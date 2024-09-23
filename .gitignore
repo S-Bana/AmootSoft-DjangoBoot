@@ -1,2 +1,11 @@
+# Ignore log files
+*.log
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore specific configuration file
+config.ini
+
 my_env/
 .gitignore

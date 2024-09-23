@@ -1,0 +1,1 @@
+New content..!{'date': 12, 'price': 34, 'group': 23, 'caption': 45}

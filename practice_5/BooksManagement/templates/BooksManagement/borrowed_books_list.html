@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}My Borrowed Books{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>My Borrowed Books</h2>
+
+    {% if borrowed_books %}
+        <ul class="list-group">
+            {% for record in borrowed_books %}
+                <li class="list-group-item">
+                    {{ record.book.title }} - 
+                    {% if record.status == "returned" %}
+                        Returned on {{ record.return_date }}
+                    {% else %}
+                        Borrowed on {{ record.borrow_date }} 
+                        <a href="{% url 'book:return_book' record.pk %}" class="btn btn-danger btn-sm float-end">Return</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not borrowed any books.</p>
+    {% endif %}
+    
+    <a href="{% url 'book:book_list' %}" class="btn btn-secondary mt-3">Back to Book List</a>
+</div>
+{% endblock %}

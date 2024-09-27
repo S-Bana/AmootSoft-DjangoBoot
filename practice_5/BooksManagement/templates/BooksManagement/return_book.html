@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Return {{ borrowed_book.book.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Return Book: {{ borrowed_book.book.title }}</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to return this book?</p>
+        <button type="submit" class="btn btn-danger">Confirm Return</button>
+        <a href="{% url 'book:borrowed_books_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

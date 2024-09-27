@@ -29,11 +29,21 @@ class Book(models.Model):
         return f"{self.title}"
 
 
+# class BorrowedBook(models.Model):
+#     user = models.ForeignKey(User, related_name='user_borrowed', on_delete=models.CASCADE)
+#     book = models.ForeignKey(Book, related_name='borrowed_book', on_delete=models.CASCADE)
+#     borrow_date = models.DateTimeField()
+#     return_date = models.DateField(null=True, blank=True)
+
+#     def __str__(self):
+#         return f"{self.book.title}"
+
 class BorrowedBook(models.Model):
     user = models.ForeignKey(User, related_name='user_borrowed', on_delete=models.CASCADE)
     book = models.ForeignKey(Book, related_name='borrowed_book', on_delete=models.CASCADE)
-    borrow_date = models.DateTimeField()
+    borrow_date = models.DateTimeField(auto_now_add=True)
     return_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=10, default='borrowed')  # 'borrowed' or 'returned'
 
     def __str__(self):
-        return f"{self.book.title}"
+        return f"{self.book.title} borrowed by {self.user.username}"
